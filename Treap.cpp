@@ -100,7 +100,8 @@ bool CheckLeftExists(TreapNode* node, KeyType key) {
     return false;
 }
 
-TreapNode* NewTreapNode(KeyType key) {
+TreapNode* NewTreapNode(KeyType key)
+    {
     int prior = rand();
     TreapNode* new_node = (TreapNode*)calloc(1, sizeof(TreapNode));
     assert(new_node);
@@ -108,7 +109,7 @@ TreapNode* NewTreapNode(KeyType key) {
     new_node->key       = key;
     new_node->prior     = prior;
     return new_node;
-}
+    }
 
 void Insert(Treap* tree, KeyType key)
     {

@@ -25,15 +25,17 @@ struct TreapNodePair
     TreapNode* second;
     };
 
-Treap*        Construct (Treap* tree);
-TreapNodePair Split     (TreapNode* node, KeyType x);
-TreapNode*    Merge     (TreapNode* left, TreapNode* right);
-bool          Find      (Treap* tree, KeyType key);
-TreapNode*    FindNode  (Treap* tree, KeyType key);
-void          Insert    (Treap* tree, KeyType key);
-bool          IsLastLeft(TreapNode* node);
-TreapNode*    EraseLeft (TreapNode* node, KeyType key);
-void          Erase     (Treap* tree, KeyType key);
+Treap*        Construct      (Treap* tree);
+TreapNodePair Split          (TreapNode* node, KeyType x);
+TreapNode*    Merge          (TreapNode* left, TreapNode* right);
+bool          Find           (Treap* tree, KeyType key);
+TreapNode*    FindNode       (Treap* tree, KeyType key);
+void          Insert         (Treap* tree, KeyType key);
+bool          IsLastLeft     (TreapNode* node);
+TreapNode*    EraseLeft      (TreapNode* node, KeyType key);
+void          Erase          (Treap* tree, KeyType key);
+TreapNode*    NewTreapNode   (KeyType key);
+bool          CheckLeftExists(TreapNode* node, KeyType key)
 void PrintNodes(Treap* tree, TreapNode* node, FILE* DumpFile);
 void PrintNodesHard(Treap* tree, TreapNode* node, FILE* DumpFile);
 void TreeDump(Treap* tree);
