@@ -4,14 +4,13 @@
 #include <string.h>
 #include <time.h>
 
-typedef int ElemT;
+typedef int KeyType;
 
 struct TreapNode {
-    ElemT x;
-    int y;
+    KeyType key;
+    int prior;
     TreapNode* left;
     TreapNode* right;
-    int mynumber;
 };
 
 struct Treap {
@@ -24,11 +23,11 @@ struct TreapNodePair {
 };
 
 Treap*        Construct (Treap* tree);
-TreapNodePair Split     (TreapNode* node, ElemT x);
+TreapNodePair Split     (TreapNode* node, KeyType x);
 TreapNode*    Merge     (TreapNode* left, TreapNode* right);
-bool          Find      (Treap* tree, ElemT key);
-TreapNode*    FindNode  (Treap* tree, ElemT key);
-void          Insert    (Treap* tree, ElemT key, int prior);
+bool          Find      (Treap* tree, KeyType key);
+TreapNode*    FindNode  (Treap* tree, KeyType key);
+void          Insert    (Treap* tree, KeyType key);
 bool          IsLastLeft(TreapNode* node);
-TreapNode*    EraseLeft (TreapNode* node, ElemT key);
-void          Erase     (Treap* tree, ElemT key);
+TreapNode*    EraseLeft (TreapNode* node, KeyType key);
+void          Erase     (Treap* tree, KeyType key);

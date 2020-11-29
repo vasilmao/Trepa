@@ -6,11 +6,10 @@
 int main() {
     srand(time(NULL));
     Treap* tree = Construct(NULL);
-    Insert(tree, 3, 27569);
-    Insert(tree, 5, 18874);
-    Insert(tree, 7, 6545);
-    Insert(tree, 6, 24042);
-    print_tree(tree->root);
+    Insert(tree, 3);
+    Insert(tree, 5);
+    Insert(tree, 7);
+    Insert(tree, 6);
     printf("%d\n", Find(tree, 5));
     Erase(tree, 7);
     Erase(tree, 5);

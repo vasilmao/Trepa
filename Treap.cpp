@@ -6,13 +6,13 @@ Treap* Construct(Treap* tree)
     return new_tree;
     }
 
-TreapNodePair Split(TreapNode* node, ElemT x)
+TreapNodePair Split(TreapNode* node, KeyType x)
     {
     if (node == NULL)
         {
         return {NULL, NULL};
         }
-    if (x > node->x)
+    if (x > node->key)
         {
         TreapNodePair pp = Split(node->right, x);
         node->right      = pp.first;
@@ -37,7 +37,7 @@ TreapNode* Merge(TreapNode* left, TreapNode* right)
         {
         return left;
         }
-    if (left->y <= right->y)
+    if (left->prior <= right->prior)
         {
         left->right = Merge(left->right, right);
         return left;
@@ -49,9 +49,9 @@ TreapNode* Merge(TreapNode* left, TreapNode* right)
         }
     }
 
-bool Find(Treap* tree, ElemT key) { return (FindNode(tree, key) != (TreapNode*)NULL); }
+bool Find(Treap* tree, KeyType key) { return (FindNode(tree, key) != (TreapNode*)NULL); }
 
-TreapNode* FindNode(Treap* tree, ElemT key)
+TreapNode* FindNode(Treap* tree, KeyType key)
     {
     TreapNode* current_node = tree->root;
     while (true)
@@ -60,12 +60,12 @@ TreapNode* FindNode(Treap* tree, ElemT key)
             {
             return NULL;
             }
-        printf("ye %d\n", current_node->x);
-        if (current_node->x == key)
+        printf("ye %d\n", current_node->key);
+        if (current_node->key == key)
             {
             return current_node;
             }
-        if (key < current_node->x )
+        if (key < current_node->key )
             {
             current_node = current_node->left;
             }
@@ -76,11 +76,12 @@ TreapNode* FindNode(Treap* tree, ElemT key)
         }
     }
 
-void Insert(Treap* tree, ElemT key, int prior)
+void Insert(Treap* tree, KeyType key)
     {
+    int prior = rand();
     TreapNode* one_element = (TreapNode*)calloc(1, sizeof(TreapNode));
-    one_element->x         = key;
-    one_element->y         = prior;
+    one_element->key         = key;
+    one_element->prior         = prior;
     if (tree->root == NULL)
         {
         tree->root = one_element;
@@ -93,7 +94,7 @@ void Insert(Treap* tree, ElemT key, int prior)
 
 bool IsLastLeft(TreapNode* node) { return node != NULL && node->left == NULL; }
 
-TreapNode* EraseLeft(TreapNode* node, ElemT key)
+TreapNode* EraseLeft(TreapNode* node, KeyType key)
     {
     if (node == NULL)
         {
@@ -101,7 +102,7 @@ TreapNode* EraseLeft(TreapNode* node, ElemT key)
         }
     if (IsLastLeft(node))
         {
-        if (node->x == key)
+        if (node->key == key)
             {
             TreapNode* new_left = node->right;
             free(node);
@@ -115,7 +116,7 @@ TreapNode* EraseLeft(TreapNode* node, ElemT key)
         node = node->left;
         }
     TreapNode* last_left = node->left;
-    if (last_left->x == key)
+    if (last_left->key == key)
         {
         node->left = last_left->right;
         free(last_left);
@@ -123,7 +124,7 @@ TreapNode* EraseLeft(TreapNode* node, ElemT key)
     return current_root;
     }
 
-void Erase(Treap* tree, ElemT key)
+void Erase(Treap* tree, KeyType key)
     {
     TreapNodePair pp = Split(tree->root, key);
     pp.second = EraseLeft(pp.second, key);
