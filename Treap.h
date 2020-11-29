@@ -6,21 +6,24 @@
 
 typedef int KeyType;
 
-struct TreapNode {
+struct TreapNode
+    {
     KeyType key;
     int prior;
     TreapNode* left;
     TreapNode* right;
-};
+    };
 
-struct Treap {
+struct Treap
+    {
     TreapNode* root;
-};
+    };
 
-struct TreapNodePair {
+struct TreapNodePair
+    {
     TreapNode* first;
     TreapNode* second;
-};
+    };
 
 Treap*        Construct (Treap* tree);
 TreapNodePair Split     (TreapNode* node, KeyType x);
@@ -31,3 +34,6 @@ void          Insert    (Treap* tree, KeyType key);
 bool          IsLastLeft(TreapNode* node);
 TreapNode*    EraseLeft (TreapNode* node, KeyType key);
 void          Erase     (Treap* tree, KeyType key);
+void PrintNodes(Treap* tree, TreapNode* node, FILE* DumpFile);
+void PrintNodesHard(Treap* tree, TreapNode* node, FILE* DumpFile);
+void TreeDump(Treap* tree);
